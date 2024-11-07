@@ -1,22 +1,16 @@
-import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
-
 import createApp from "@/lib/create-app";
+import index from "@/routes/index.route";
 
-import { pinoLogger } from "./middlewares/pino-logger";
+import configureOpenAPI from "./lib/configure-open-api";
 
 const app = createApp();
 
-app.use(serveEmojiFavicon("📝"));
+const routes = [
+  index,
+];
 
-app.use(pinoLogger());
+configureOpenAPI(app);
 
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
-
-app.notFound(notFound);
-app.onError(onError);
-
-export type AppType = typeof app;
+routes.forEach(route => app.route("/", route));
 
 export default app;
