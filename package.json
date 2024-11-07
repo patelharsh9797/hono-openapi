@@ -2,6 +2,7 @@
   "name": "hono-openai",
   "type": "module",
   "version": "1.0.0",
+  "module": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "node ./dist/src/index.js",

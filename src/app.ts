@@ -1,21 +1,16 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
-// import { logger } from "hono/logger";
 import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
+
+import createApp from "@/lib/create-app";
 
 import { pinoLogger } from "./middlewares/pino-logger";
 
-const app = new OpenAPIHono();
+const app = createApp();
 
 app.use(serveEmojiFavicon("📝"));
 
-// app.use(logger())
 app.use(pinoLogger());
 
 app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
-
-app.get("/test", (c) => {
   return c.text("Hello Hono!");
 });
 
