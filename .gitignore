@@ -27,7 +27,6 @@ lerna-debug.log*
 # misc
 .DS_Store
 
-dev.db
-test.db
+*.db
 .vercel
 dist
