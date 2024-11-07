@@ -2,16 +2,16 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const tasks = sqliteTable("tasks", {
-  id: integer("id", { mode: "number" })
+  id: integer({ mode: "number" })
     .primaryKey({ autoIncrement: true }),
-  name: text("name")
+  name: text()
     .notNull(),
-  done: integer("done", { mode: "boolean" })
+  done: integer({ mode: "boolean" })
     .notNull()
     .default(false),
-  createdAt: integer("created_at", { mode: "timestamp" })
+  createdAt: integer({ mode: "timestamp" })
     .$defaultFn(() => new Date()),
-  updatedAt: integer("updated_at", { mode: "timestamp" })
+  updatedAt: integer({ mode: "timestamp" })
     .$defaultFn(() => new Date())
     .$onUpdate(() => new Date()),
 });
@@ -22,6 +22,7 @@ export const insertTasksSchema = createInsertSchema(
   tasks,
   {
     name: schema => schema.name.min(1).max(500),
+    done: schema => schema.done.default(false),
   },
 ).required({
   done: true,

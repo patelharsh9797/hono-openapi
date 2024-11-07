@@ -9,6 +9,7 @@ const db = drizzle({
     url: env.DATABASE_URL,
     authToken: env.DATABASE_URL,
   },
+  casing: "snake_case",
   schema,
 });
 

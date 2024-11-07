@@ -7,9 +7,8 @@ export default defineConfig({
   out: "./src/db/migrations",
   dialect: "sqlite",
   casing: "snake_case",
-  //   driver: "turso",
   dbCredentials: {
     url: env.DATABASE_URL,
-    // authToken: env.DATABASE_AUTH_TOKEN,
+    // token: env.DATABASE_AUTH_TOKEN,
   },
 });
